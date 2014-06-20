@@ -22,7 +22,7 @@ set = RangeSet.from_array([1, 2, 3, 6, 7, 8, 11, 14, 17, 18, 19])
 set.to_a  # [1..3, 6..8, 11..11, 14..14, 17..19]
 ```
 
-The `to_a` method takes a boolean argument determines whether or not to turn isolated elements into zero-length ranges or leave them as single elements:
+The `to_a` method takes a boolean argument that determines whether or not to turn isolated elements into zero-length ranges or leave them as single elements:
 
 ```ruby
 set = RangeSet.from_array([1, 2, 3, 6, 7, 8, 11, 14, 17, 18, 19])
@@ -30,6 +30,8 @@ set.to_a(true)  # [1..3, 6..8, 11, 14, 17..19]
 ```
 
 ### Union
+
+Combining two RangeSets:
 
 ```ruby
 set = RangeSet.new([3..10]).union(
@@ -41,12 +43,16 @@ set.to_a  # [1..11, 14..18]
 
 ### Intersection
 
+Finding the elements common to two RangeSets:
+
 ```ruby
 set = RangeSet.new([3..10]).intersection(RangeSet.new([1..7]))
 set.to_a  # [3..7]
 ```
 
 ### Subtract
+
+Removing the elements contained in one RangeSet from another:
 
 ```ruby
 set = RangeSet.new([3..10]).subtract(RangeSet.new([1..5]))
@@ -57,6 +63,11 @@ set.to_a  # [6..10]
 
 The difference here means the symmetric difference (i.e. the union without the intersection)
 [http://en.wikipedia.org/wiki/Symmetric_difference](http://en.wikipedia.org/wiki/Symmetric_difference)
+
+```ruby
+set = RangeSet.new([1..10]).difference(RangeSet.new([3..8]))
+set.to_a  # [1..2, 9..10]
+```
 
 ### Include
 
